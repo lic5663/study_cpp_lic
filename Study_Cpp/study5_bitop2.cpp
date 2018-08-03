@@ -59,5 +59,19 @@ int main(void)
 	cout << ++iNumber << endl;
 	cout << iNumber++ << endl;
 	cout << iNumber << endl;
+
+	if ((iBuf & iArmor) != 0)
+		cout << " Armor 가 존재합니다. " << endl;
+
+	if ((iBuf & iAttack) != 0)
+		cout << " Attack 이 존재합니다. " << endl;
+
+	if ((iBuf & iCritical) != 0)
+		cout << " Critical 이 존재합니다. " << endl;
+
+	/*
+	else : if 와 함께 사용
+	*/
+
 	return 0;
 }
