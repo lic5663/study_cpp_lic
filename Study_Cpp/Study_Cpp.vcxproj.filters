@@ -45,5 +45,8 @@
     <ClCompile Include="study10_forStar.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="study11_array.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
