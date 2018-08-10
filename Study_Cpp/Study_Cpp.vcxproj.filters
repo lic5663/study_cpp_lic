@@ -39,5 +39,8 @@
     <ClCompile Include="study8_while.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="study9_for.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
