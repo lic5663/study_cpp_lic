@@ -54,5 +54,8 @@
     <ClCompile Include="study12_officalLotto.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="study13_baseballGame.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
