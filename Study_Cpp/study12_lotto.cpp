@@ -166,11 +166,11 @@ void WinCheck(int* myLotto, int* Lotto)
 
 int main()
 {
-	int i, j, k;
-	
 	// 로또 숫자 기입
 	int iMy_Lotto[LOTTO_NUM] = {};
 	Write_Lotto(iMy_Lotto);
+
+	cout << endl;
 
 	// 로또 숫자 부여
 	int iLotto_Number[LOTTO_NUM] = {};
