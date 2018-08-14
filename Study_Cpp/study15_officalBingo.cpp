@@ -9,6 +9,24 @@ enum AI_MODE
 	AM_HARD
 };
 
+// AI 추측용 열거
+enum LINE_NUMBER
+{
+	LN_H1,
+	LN_H2,
+	LN_H3,
+	LN_H4,
+	LN_H5,
+	LN_V1,
+	LN_V2,
+	LN_V3,
+	LN_V4,
+	LN_V5,
+	LN_LT,
+	LN_RT
+
+};
+
 int main()
 {
 	
@@ -180,9 +198,118 @@ int main()
 			iAIInput = iNoneSelect[rand() % iNoneSelectCount];
 			break;
 		case AM_HARD:
+			// 빙고 완성 가능성을 추측해 가장 높은 라인을
+			// 우선적으로 부른다
+			int iLine=0;
+			int iStarCount=0;
+			int iSaveCount=0;
+
+			// 가로라인 별 많은 라인 구하기
+			for (int i = 0; i < 5; i++)
+			{
+				for (int j = 0; j < 5; j++)
+				{
+					if (iAINumber[i * 5 + j] == INT_MAX)
+						++iStarCount;
+				}
+
+				// 별이 5개 미만( 빙고줄 아닌것)
+				// 라인의 별이 가장 많은것.
+				if (iStarCount < 5 && iSaveCount < iStarCount)
+				{
+					iLine = i;
+					iSaveCount = iStarCount;
+				}
+			}
+			// 세로라인 별 많은 라인 구하기
+			for (int i = 0; i < 5; i++)
+			{
+				iStarCount = 0;
+				for (int j = 0; j < 5; j++)
+				{
+					if (iAINumber[j * 5 + i] == INT_MAX)
+						++iStarCount;
+				}
+				if (iStarCount < 5 && iSaveCount < iStarCount)
+				{
+					iLine = i + 5;
+					iSaveCount = iStarCount;
+				}
+			}
+			// 좌->우 대각선 별 많은 라인 구하기
+			iStarCount = 0;
+			for (int i = 0; i < 25; i += 6)
+			{
+				if (iAINumber[i] == INT_MAX)
+					++iStarCount;
+			}
+			if (iStarCount < 5 && iSaveCount < iStarCount)
+			{
+				iLine = LN_LT;
+				iSaveCount = iStarCount;
+			}
+
+			// 우->좌 대각선 별 많은 라인 구하기
+			iStarCount = 0;
+			for (int i = 4; i < 21; i += 4)
+			{
+				if (iAINumber[i] == INT_MAX)
+					++iStarCount;
+			}
+			if (iStarCount < 5 && iSaveCount < iStarCount)
+			{
+				iLine = LN_RT;
+				iSaveCount = iStarCount;
+			}
+			// 모든 라인 조사 완료하면 iLine이 별이 가장 많음
+			// 그 줄에 있는 숫자 하나를 선택
+			// 가로줄일 경우
+			if (iLine <= LN_H5)
+			{
+				for (int i = 0; i < 5; i++)
+				{
+					if (iAINumber[iLine * 5 + i] != INT_MAX)
+					{
+						iAIInput = iAINumber[iLine * 5 + i];
+						break;
+					}
+				}
+			}
+			else if (iLine <= LN_V5)
+			{
+				for (int i = 0; i < 5; i++)
+				{
+					if (iAINumber[i * 5 + (iLine - 5)] != INT_MAX)
+					{
+						iAIInput = iAINumber[i * 5 + (iLine - 5)];
+						break;
+					}
+				}
+			}
+			else if (iLine == LN_LT)
+			{
+				for (int i = 0; i < 25; i += 6)
+				{
+					if (iAINumber[i] != INT_MAX)
+					{
+						iAIInput = iAINumber[i];
+						break;
+					}
+				}
+			}
+			else if (iLine == LN_RT)
+			{
+				for (int i = 4; i < 21; i += 4)
+				{
+					if (iAINumber[i] != INT_MAX)
+					{
+						iAIInput = iAINumber[i];
+						break;
+					}
+				}
+			}
 			break;
-		default:
-			break;
+
 		}
 		// AI가 숫자를 선택했으므로 해당 숫자도 날린다
 		// 유저 판
