@@ -13,7 +13,7 @@ int horizontalLine = 0, verticlaLine = 0, diagonalLine = 0;
 int iHor = 0x00000000;
 int iVer = 0x00000000;
 int iDia = 0x00000000;
-/*
+
 const int H1 = 0x00000001;			//	1
 const int H2 = 0x00000002;			//	10
 const int H3 = 0x00000004;			//	100
@@ -28,7 +28,7 @@ const int V5 = 0x00000010;			//	10000
 
 const int D1 = 0x00000001;			//	1
 const int D2 = 0x00000002;			//	10
-*/
+
 
 // 색 관련 열거체
 enum {
@@ -86,11 +86,56 @@ void Display(int *iNumber, int iBingoLine)
 		{
 			if (iNumber[i * 5 + j] == INT_MAX)
 			{
-				if (((int)pow(2,j) & iVer) || ((int)pow(2, i) & iHor) || (1 & iDia) || (2& iDia ))
+				if (((int)pow(2,j) & iVer) || ((int)pow(2, i) & iHor))
 				{
 					setcolor(GREEN, BLACK);
 					cout << "*\t";
 					setcolor(DARK_GRAY, BLACK);
+				}
+				else if (i == j)
+				{
+					if (iDia & D1)
+					{
+						setcolor(GREEN, BLACK);
+						cout << "*\t";
+						setcolor(DARK_GRAY, BLACK);
+					}
+					else if ((i + j) == 4)
+					{
+						if (iDia & D2)
+						{
+							setcolor(GREEN, BLACK);
+							cout << "*\t";
+							setcolor(DARK_GRAY, BLACK);
+						}
+						else
+						{
+							setcolor(RED, BLACK);
+							cout << "*\t";
+							setcolor(DARK_GRAY, BLACK);
+						}
+					}
+					else
+					{
+						setcolor(RED, BLACK);
+						cout << "*\t";
+						setcolor(DARK_GRAY, BLACK);
+					}
+				}
+				else if ((i + j) == 4)
+				{
+					if (iDia & D2)
+					{
+						setcolor(GREEN, BLACK);
+						cout << "*\t";
+						setcolor(DARK_GRAY, BLACK);
+					}
+					else
+					{
+						setcolor(RED, BLACK);
+						cout << "*\t";
+						setcolor(DARK_GRAY, BLACK);
+					}
 				}
 				else
 				{
@@ -106,7 +151,7 @@ void Display(int *iNumber, int iBingoLine)
 		cout << endl;
 		cout << endl;
 	}
-	cout << "가로 : " << horizontalLine << " 세로 : " << verticlaLine << " 대각선 : " << diagonalLine << endl;
+	cout << "가로 : " << horizontalLine << " 세로 : " << verticlaLine << " 대각선 : " << diagonalLine  <<endl;
 	
 	cout << iCount << "회차 | 빙고수: " << iBingoLine;
 	if (bWin)
