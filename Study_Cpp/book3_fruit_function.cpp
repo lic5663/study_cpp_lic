@@ -27,10 +27,24 @@ void FruitBuyer::InitMembers(int money)
 	numOfApples = 0;
 }
 
+bool FruitBuyer::BuyChecker(int money)
+{
+	if (money < 0)
+	{
+		cout << "잘못된 돈 기입" << endl;
+		return false;
+	}
+}
+
 void FruitBuyer::BuyApples(FruitSeller &seller, int money)
 {
-	numOfApples += seller.SaleApples(money);
-	myMoney -= money;
+	if (BuyChecker(money))
+	{
+		numOfApples += seller.SaleApples(money);
+		myMoney -= money;
+	}
+	else
+		cout << "구매 불가" << endl;
 }
 
 void FruitBuyer::ShowBuyResult()

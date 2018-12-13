@@ -25,6 +25,7 @@ class FruitBuyer
 {
 public:
 	void InitMembers(int money);
+	bool BuyChecker(int money);
 	void BuyApples(FruitSeller &seller, int money);
 	void ShowBuyResult();
 
