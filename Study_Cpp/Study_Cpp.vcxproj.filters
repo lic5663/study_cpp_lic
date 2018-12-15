@@ -138,7 +138,7 @@
     <ClCompile Include="book4_UsefulThisPtr.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SelfRef.cpp">
+    <ClCompile Include="book4_SelfRef.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
