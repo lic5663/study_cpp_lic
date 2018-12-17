@@ -61,6 +61,18 @@ public:
 
 		position = myposition;
 	}
+	// deep copy constructor
+	NameCard(const NameCard& copy) : position(copy.position)
+	{
+		name = new char[strlen(copy.name) + 1];
+		strcpy(name, copy.name);
+
+		Bname = new char[strlen(copy.Bname) + 1];
+		strcpy(Bname, copy.Bname);
+
+		callNumber = new char[strlen(copy.callNumber) + 1];
+		strcpy(callNumber, copy.callNumber);
+	}
 
 	void ShowNameCardInfo()
 	{
@@ -74,6 +86,7 @@ public:
 
 	~NameCard()
 	{
+		cout << this->name << "의 소멸자 작동" << endl;
 		delete[]name;
 		delete[]Bname;
 		delete[]callNumber;
@@ -88,9 +101,16 @@ int main(void)
 	NameCard manSENIOR("Hong", "OrangeEng", "010-3333-4444", COMP_POS::SENIOR);
 	NameCard manAssist("Kim", "SoGoodComp", "010-5555-6666", COMP_POS::ASSIST);
 
+	NameCard copy1 = manClerk;
+	NameCard copy2 = manSENIOR;
+
 	manClerk.ShowNameCardInfo();
 	manSENIOR.ShowNameCardInfo();
 	manAssist.ShowNameCardInfo();
+
+	cout << "--- copy ---" << endl;
+	copy1.ShowNameCardInfo();
+	copy2.ShowNameCardInfo();
 
 	return 0;
 }
