@@ -16,12 +16,14 @@ public :
 		strcpy(name, myname);
 		age = myage;
 	}
+	
 	// deep copy constructor
 	Person(const Person& copy) : age(copy.age)
 	{
 		name = new char[strlen(copy.name) + 1];
 		strcpy(name, copy.name);
 	}
+	
 	void ShowPersonInfo()
 	{
 		cout << "ÀÌ¸§ : " << name << endl;
