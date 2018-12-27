@@ -225,6 +225,12 @@
     <ClCompile Include="book8_ReferenceAttribute.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="book9_MultiInheri2.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="book9_MultiInheri3.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h">
