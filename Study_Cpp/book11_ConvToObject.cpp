@@ -18,6 +18,7 @@ public:
 	}
 	operator int()
 	{
+		cout << "int Çüº¯È¯" << endl;
 		return num;
 	}
 	void ShowNumber()
