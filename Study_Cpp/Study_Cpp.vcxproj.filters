@@ -234,9 +234,6 @@
     <ClCompile Include="book10_FirstOperationOverloading.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="GFunctionOverloading.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="book10_OneOpndOverloading.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -256,6 +253,45 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="book10_PointConsoleOutput.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="book11_FirstOperationOverloading.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="book11_InheritAssignOperation.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="book11_ImproveInit.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="book10_GFunctionOverloading.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="book11_ArrayClass.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="book11_StableConstrArray.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="book11_StablePointObjArray.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="book11_StablePointPtrArray.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="book11_NewDeleteOverloading.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="book11_SmartPointer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="book11_Functor.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="book11_SortFunctor.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="book11_ConvToObject.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
