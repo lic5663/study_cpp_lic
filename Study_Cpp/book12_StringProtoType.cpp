@@ -1,5 +1,7 @@
 #include <iostream>
+#include <cstring>
 using namespace std;
+#define MAX_STR_LEN 50
 
 class String
 {
@@ -8,6 +10,12 @@ private:
 	int str_len;
 
 public:
+	// 기초 생성자
+	String()
+	{
+		str_len = 0;
+		Str = NULL;
+	}
 	// 생성자 : 동적할당
 	String(char* str)	
 	{
@@ -26,13 +34,13 @@ public:
 	{
 		delete[] Str;
 	}
-
-	// + 연산자 오버로딩
-	friend String& operator+(String& str1, String& str2);
-
-	// << 연산자 오버로딩
-	friend ostream& operator<<(ostream& os, String& str);
-
+	// String 내부 멤버 변경
+	void MemberChange(char* str)
+	{
+		this->str_len = strlen(str);
+		this->Str = new char[this->str_len + 1];	// 여기도 +1 주의
+		strcpy(this->Str, str);
+	}
 	// += 연산자 오버로딩
 	String& operator+=(String& str)
 	{
@@ -48,21 +56,51 @@ public:
 
 		return *this;
 	}
+	// == 연산자 오버로딩
+	bool operator==(String& str)
+	{
+		if (this->str_len == str.str_len)
+			if (!strcmp(this->Str, str.Str))
+				return true;			
+		return false;
+	}
+
+
+	// + 연산자 오버로딩
+	friend String& operator+(String& str1, String& str2);
+	// << 연산자 오버로딩
+	friend ostream& operator<<(ostream& os, String& str);
+	friend istream& operator>>(istream& is, String& str);
+
 };
 
 ostream& operator<<(ostream& os,String& str)
 {
-	cout << str.Str;
+	os << str.Str;
 	return os;
 }
 
+istream& operator>>(istream& is, String& str)
+{
+	char st[MAX_STR_LEN];
+	is >> st;
+	str.MemberChange(st);
+	return is;
+}
 
 String& operator+(String& str1, String& str2)
 {
+	static String strSum;
 	char * charSum;
-	charSum = new char[str1.str_len + str2.str_len + 2];
-	charSum = strcat(str1.Str, str2.Str);
-	String strSum(charSum);
+	char * st1, * st2;
+	
+	st1 = new char[str1.str_len + 1];
+	st2 = new char[str2.str_len + 1];
+	strcpy(st1, str1.Str);
+	strcpy(st2, str2.Str);
+	charSum = strcat(st1, st2);
+	strSum.MemberChange(charSum);
+	
 	return strSum;
 }
 
@@ -70,24 +108,37 @@ int main(void)
 {
 	// 정상 생성 확인
 	String str1("hello");
-	cout << str1 << endl;
+	cout << "str1 : " << str1 << endl;
 
 	// 복사생성자 정상 작동 확인
 	String str2 = str1;
-	cout << str2 << endl;
-
-	// << 오버로딩 정상 작동 확인
-	cout << str1 << str2 << endl;
+	cout << "str2 : " << str2 << endl;
 
 	// + 오버로딩 정상 작동 확인
 	String str3 = str1 + str2;
-	cout << str3 << endl;
+	cout << "str3(str1 + str2) : " << str3 << endl;
 
-	
-	cout << "어디까지 되나요" << endl;
 	// += 오버로딩 정상 작동 확인
-	str1 += str2;
-	cout << str1 << endl;
+	str3 += str2;
+	cout << "str3 : " << str3 << endl;
+
+	String str4("muyo");
+	String str5 = str4;
+	// == 오버로딩 정상 작동 확인
+	if (str4 == str5)
+		cout << "동일 문자열입니다." << endl;
+	else
+		cout << "다른 문자열입니다" << endl;
+
+	if (str3 == str5)
+		cout << "동일 문자열입니다." << endl;
+	else
+		cout << "다른 문자열입니다" << endl;
+
+	// >> 오버로딩 정상 작동 확인
+	String str6;
+	cin >> str6;
+	cout << "str6 : " << str6 << endl;
 	
 	return 0;
 }
